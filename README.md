@@ -1,77 +1,130 @@
 # News Headline Sentiment & Coverage Analysis: Four YouTube News Channels
 
-An end-to-end data analysis of 8,000 YouTube video headlines from CBS News, CNN, Fox News and MSNBC. It asks two questions: **do the channels cover political topics at different rates, and do their headlines differ in tone?** The project covers data validation, EDA, SQL, statistical testing, a Power BI dashboard, and written findings.
+An end-to-end data analysis of 8,000 YouTube video headlines from **CBS News**, **CNN**, **Fox News**, and **MSNBC**. This project investigates two primary questions: **do the channels cover political topics at different rates, and do their headlines differ in tone?** The pipeline encompasses data validation, relational database design (SQL), rigorous statistical testing, a four-page Power BI dashboard, and documented written findings.
 
-> **Scope note:** this analyses video **titles (headlines)**, not comments. Sentiment is a VADER score of the wording. It does not measure what a channel believes or what viewers think.
+> **Scope Note:** This analysis evaluates video **titles (headlines)**, not viewer comments. Sentiment is measured via VADER polarity scoring of the headline wording; it reflects lexical tone rather than editorial intent or audience opinion.
 
 ![Pipeline](figures/architecture.png)
 
-## Key findings
-- **Coverage is the clearest difference.** MSNBC titles mention the tracked political topics in 43% of headlines against 22% to 25% for the others (full snapshot). Over the same dates the gap is 17.3 percentage points (95% CI 14.7 to 20.0).
-- **Tone differences are small.** Fox headlines score lowest (mean -0.160; 44.6% negative vs 34.0% to 38.6%). This holds in every robustness check, but the effect is negligible to small (Cliff's delta 0.09 to 0.16).
-- **CBS, CNN and MSNBC are indistinguishable in tone** once compared over the same dates.
-- **A claim that did not hold up:** the original notebook suggested MSNBC was more negative on Trump. With corrected tests on this snapshot, no channel difference survives.
+---
 
-Full write-up with evidence and caveats: [docs/findings.md](docs/findings.md)
+## Key Findings
 
-## Dashboard
-Four-page Power BI dashboard (Overview, Channel Comparison, Detailed Analysis, Statistical Evidence). Build steps: [docs/powerbi_guide.md](docs/powerbi_guide.md)
+- **Topic Coverage Shows the Clearest Divergence:** MSNBC titles mention tracked political topics in **43%** of headlines, compared to **22%–25%** for the other three networks across the full snapshot. Over a time-matched window, the gap remains **17.3 percentage points** (95% CI: 14.7 to 20.0).
+- **Headline Tone Differences Are Statistically Significant but Small:** Fox News headlines register the lowest average sentiment (mean $-0.160$; $44.6\%$ negative vs. $34.0\%–38.6\%$ for others). While consistent across every robustness check, the practical effect size is negligible to small (Cliff's $\delta = 0.09\text{ to }0.16$).
+- **Baseline Parity Among CBS, CNN, and MSNBC:** Once compared over identical calendar dates, no statistically meaningful difference in headline tone exists among CBS, CNN, and MSNBC.
+- **Re-evaluating Prior Assumptions:** Preliminary exploratory work suggested MSNBC was significantly more negative on coverage mentioning Donald Trump. Under corrected non-parametric testing on this snapshot, no statistically significant inter-channel difference survives.
 
-<!-- Add your screenshots to powerbi/screenshots/ and keep these lines -->
+For a complete breakdown of methodology, statistical tables, and caveats, see [docs/findings.md](docs/findings.md).
+
+---
+
+## Interactive Dashboard
+
+An interactive, four-page Power BI report exploring coverage rates, sentiment distributions, temporal trends, and statistical test results:
+1. **Overview**
+2. **Channel Comparison**
+3. **Detailed Analysis**
+4. **Statistical Evidence**
+
+**[View Live Power BI Dashboard](https://app.powerbi.com/links/gMINzfw585?ctid=1490b17d-5dc9-4cbf-aeba-a2e854f521b8&pbi_source=linkShare)**
+
+### Dashboard Previews
+
 ![Overview](powerbi/screenshots/01_overview.png)
-![Channel comparison](powerbi/screenshots/02_channel_comparison.png)
+![Channel Comparison](powerbi/screenshots/02_channel_comparison.png)
+![Detailed Analysis](powerbi/screenshots/03_detailed_analysis.png)
+![Statistical Evidence](powerbi/screenshots/04_statistical_evidence.png)
 
-## Tech stack
-Python (pandas, NumPy, SciPy, Matplotlib, Seaborn), NLTK VADER, SQLite, SQL, Jupyter, Power BI (DAX).
+---
 
-## Methods
-| Stage | What was done |
-|---|---|
-| Cleaning | Validated 8,000 rows: 0 missing values, 0 duplicate IDs, 47 repeated titles flagged. Recomputed VADER on every title and matched the stored scores exactly. |
-| EDA | 9-section notebook: score distributions, label shares, topic coverage, time-matched trends, extreme headlines, and a check on excluding neutral headlines. |
-| SQL | 4-table SQLite database with primary and foreign keys and 12 queries (joins, `CASE WHEN`, CTEs, subqueries, window functions), cross-checked against pandas. See [docs/sql_documentation.md](docs/sql_documentation.md). |
-| Statistics | Kruskal-Wallis, pairwise Mann-Whitney with Holm correction, chi-square, effect sizes, and robustness checks (time-matched window, no repeated titles, day-level Friedman test). |
-| Dashboard | Star-schema model, DAX measures, four pages. |
+## Tech Stack
 
-## Project structure
+- **Data Processing & Statistics:** Python (`pandas`, `NumPy`, `SciPy`, `NLTK VADER`)
+- **Visualization:** `Matplotlib`, `Seaborn`, Power BI (`DAX`, Star Schema)
+- **Database & Querying:** SQLite, SQL
+
+---
+
+## Methodology Overview
+
+| Stage | Description |
+| :--- | :--- |
+| **Data Validation** | Audited 8,000 records: verified 0 missing values and 0 duplicate video IDs, flagged 47 repeated titles, and recomputed VADER scores to confirm 100% alignment with raw inputs. |
+| **Database & SQL** | Designed a normalized 4-table SQLite schema with primary/foreign keys and authored 12 analytical queries (joins, `CASE WHEN`, CTEs, subqueries, window functions), cross-validated against `pandas`. See [docs/sql_documentation.md](docs/sql_documentation.md). |
+| **Statistical Testing** | Applied Kruskal-Wallis tests, pairwise Mann-Whitney $U$ tests with Holm-Bonferroni correction, Chi-square tests, and effect size metrics (Cliff's $\delta$, Cramér's $V$). Validated via robustness checks (time-matched window, deduplicated titles, and day-level Friedman tests). |
+| **BI Reporting** | Built a star-schema semantic model with custom DAX measures across four interactive report pages. |
+
+---
+
+## Project Structure
+
+```text
+news-headline-sentiment/
+├── data/               # Raw, processed, and Power BI export data (gitignored)
+├── docs/               # Written findings, SQL documentation, Power BI guide, architecture
+├── figures/            # Generated statistical charts and pipeline architecture diagram
+├── legacy/             # Original data collection scripts and exploratory notebook
+├── powerbi/            # Power BI report (.pbix) and dashboard screenshots
+├── reports/            # Automated data quality, SQL verification, and statistical outputs
+├── sql/                # Database DDL schema and analytical SQL queries
+├── src/                # Modular Python ETL, database, statistics, and export scripts
+├── .gitignore
+├── README.md
+└── requirements.txt
 ```
-src/            01_clean_data.py, 03_build_database.py, 04_statistics.py, 05_export_for_powerbi.py
-notebooks/      02_eda.ipynb
-sql/            schema.sql, queries.sql
-reports/        data_quality_report.md, sql_results.md, statistics_results.md
-figures/        EDA charts, architecture diagram
-docs/           findings.md, sql_documentation.md, powerbi_guide.md, architecture.md
-powerbi/        screenshots (and the report file, if you share it)
-legacy/         original collection code and notebook, kept for reference
-data/           not committed; see data/README.md
-```
 
-## How to run
-```
+---
+
+## Getting Started
+
+### 1. Environment Setup
+
+```bash
+git clone <your-repository-url>
+cd news-headline-sentiment
+
 python -m venv venv
-venv\Scripts\activate            # Windows (use: source venv/bin/activate on macOS/Linux)
+# Windows:
+venv\Scripts\activate
+# macOS/Linux:
+# source venv/bin/activate
+
 pip install -r requirements.txt
 python -c "import nltk; nltk.download('vader_lexicon')"
+```
 
-# place videos.csv and sentiments.csv in data/raw/ (see data/README.md)
+### 2. Run the Pipeline
+
+Place `videos.csv` and `sentiments.csv` inside `data/raw/` (refer to [data/README.md](data/README.md) for schema requirements), then execute the pipeline scripts sequentially:
+
+```bash
 python src/01_clean_data.py
-# open notebooks/02_eda.ipynb and Run All
 python src/03_build_database.py
 python src/04_statistics.py
 python src/05_export_for_powerbi.py
 ```
 
-## Data
-The data was collected on **12 Nov 2026** with the YouTube Data API v3: each channel's latest 2,000 uploads. Because the window is "latest 2,000", channels cover different periods (MSNBC 27 days, CBS 69 days), so comparisons are also run on a time-matched window of whole days (16 Oct to 11 Nov, 5,361 videos). The data files are not committed; see [data/README.md](data/README.md).
+---
+
+## Data & Sampling Window
+
+Data was collected on **12 Nov 2026** via the YouTube Data API v3, capturing the **2,000 most recent uploads** per channel ($N = 8,000$). Because upload frequency varies by network, the 2,000-video window spans different timeframes (e.g., 27 days for MSNBC vs. 69 days for CBS News). To control for temporal confounding, all core hypotheses are also evaluated on a **time-matched window** of overlapping full days (**16 Oct – 11 Nov 2026**, $n = 5,361$ videos). Raw datasets are excluded from version control; see [data/README.md](data/README.md).
+
+---
 
 ## Limitations
-- Headlines, not comments: results say nothing about audience opinion.
-- VADER scores word tone. Event words (riots, attack) score negative whatever the stance, and some positive scores are misreadings.
-- Short snapshot (27 to 69 days) that includes midterm election coverage, so tone and topic coverage may be event-driven.
-- Tests assume independent headlines; same-day headlines share news events, so the day-level test is included as a check.
-- VADER has not been validated against hand-labelled headlines (the most useful next step).
+
+- **Headlines vs. Content/Comments:** Findings reflect headline framing only and do not capture full video transcripts or audience sentiment.
+- **Lexicon Constraints:** VADER relies on rule-based lexical polarity. Hard-news terms (e.g., *attack*, *crisis*, *riot*) register negative scores regardless of journalistic neutrality or stance.
+- **Event-Driven Window:** The 27-to-69-day window overlaps with U.S. midterm election coverage, which may elevate political topic frequency and negative framing.
+- **Autocorrelation:** Standard non-parametric tests assume independent observations; because same-day headlines react to shared breaking news, day-level Friedman tests are included as a sensitivity check.
+- **Future Work:** Validating VADER classifications against a human-annotated sample of news headlines is recommended as the highest-value next step.
+
+---
 
 ## Documentation
-[Findings](docs/findings.md) | [SQL documentation](docs/sql_documentation.md) | [Power BI guide](docs/powerbi_guide.md) | [Architecture](docs/architecture.md)
 
-Author: Yuvraj Negi
+- [Detailed Analytical Findings](docs/findings.md)
+- [SQL Schema & Query Documentation](docs/sql_documentation.md)
+- [System Architecture](docs/architecture.md)
