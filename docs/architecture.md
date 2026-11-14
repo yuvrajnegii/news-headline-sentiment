@@ -5,9 +5,9 @@ flowchart LR
     A["YouTube Data API v3<br/>collected 12 Nov 2026"] --> B[("Raw CSVs<br/>videos + VADER scores")]
     B --> C["01 Clean and validate"]
     C --> D[("videos_clean.csv")]
-    D --> F["03 SQLite database<br/>+ 12 SQL queries"]
-    D --> G["04 Statistics"]
-    F --> H["05 Export tables"]
+    D --> F["02 SQLite database<br/>+ 12 SQL queries"]
+    D --> G["03 Statistics"]
+    F --> H["04 Export tables"]
     G --> H
     H --> I["Power BI dashboard"]
     F --> J["Findings and<br/>recommendations"]
