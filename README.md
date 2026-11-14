@@ -29,7 +29,7 @@ Python (pandas, NumPy, SciPy, Matplotlib, Seaborn), NLTK VADER, SQLite, SQL, Jup
 |---|---|
 | Cleaning | Validated 8,000 rows: 0 missing values, 0 duplicate IDs, 47 repeated titles flagged. Recomputed VADER on every title and matched the stored scores exactly. |
 | EDA | 9-section notebook: score distributions, label shares, topic coverage, time-matched trends, extreme headlines, and a check on excluding neutral headlines. |
-| SQL | 4-table SQLite database with primary and foreign keys and 12 queries (joins, `CASE WHEN`, CTEs, subqueries, window functions), cross-checked against pandas. See [docs/sql_documentation.md](docs/sql_documentation.md). |
+| SQL | 4-table SQLite database with primary and foreign keys and 12 queries (joins, `CASE WHEN`, CTEs, subqueries, window functions), cross-checked against pandas.
 | Statistics | Kruskal-Wallis, pairwise Mann-Whitney with Holm correction, chi-square, effect sizes, and robustness checks (time-matched window, no repeated titles, day-level Friedman test). |
 | Dashboard | Star-schema model, DAX measures, four pages. |
 
