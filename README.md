@@ -12,7 +12,7 @@ An end-to-end data analysis of 8,000 YouTube video headlines from **CBS News**, 
 
 - **Topic Coverage Shows the Clearest Divergence:** MSNBC titles mention tracked political topics in **43%** of headlines, compared to **22%–25%** for the other three networks across the full snapshot. Over a time-matched window, the gap remains **17.3 percentage points** (95% CI: 14.7 to 20.0).
 - **Headline Tone Differences Are Statistically Significant but Small:** Fox News headlines register the lowest average sentiment (mean $-0.160$; $44.6\%$ negative vs. $34.0\%–38.6\%$ for others). While consistent across every robustness check, the practical effect size is negligible to small (Cliff's $\delta = 0.09\text{ to }0.16$).
-- **Baseline Parity Among CBS, CNN, and MSNBC:** Once compared over identical calendar dates, no statistically meaningful difference in headline tone exists among CBS, CNN, and MSNBC.
+- **Baseline Parity Among CBS, CNN, and MSNBC:** Once compared over identical calendar dates, no statistically significant difference in headline tone was detected among CBS, CNN, and MSNBC.
 - **Re-evaluating Prior Assumptions:** Preliminary exploratory work suggested MSNBC was significantly more negative on coverage mentioning Donald Trump. Under corrected non-parametric testing on this snapshot, no statistically significant inter-channel difference survives.
 
 For a complete breakdown of methodology, statistical tables, and caveats, see [docs/findings.md](docs/findings.md).
@@ -41,7 +41,7 @@ An interactive, four-page Power BI report exploring coverage rates, sentiment di
 ## Tech Stack
 
 - **Data Processing & Statistics:** Python (`pandas`, `NumPy`, `SciPy`, `NLTK VADER`)
-- **Visualization:** `Matplotlib`, `Seaborn`, Power BI (`DAX`, Star Schema)
+- **Visualization:** `Matplotlib`, Power BI (`DAX`, Star Schema)
 - **Database & Querying:** SQLite, SQL
 
 ---
@@ -65,7 +65,8 @@ news-headline-sentiment/
 ├── docs/               # Written findings, SQL documentation, Power BI guide, architecture
 ├── figures/            # Generated statistical charts and pipeline architecture diagram
 ├── legacy/             # Original data collection scripts and exploratory notebook
-├── powerbi/            # Power BI report (.pbix) and dashboard screenshots
+├── notebooks/          # run_pipeline.ipynb: runs the four pipeline scripts in order
+├── powerbi/            # Dashboard screenshots (the .pbix report is kept local)
 ├── reports/            # Automated data quality, SQL verification, and statistical outputs
 ├── sql/                # Database DDL schema and analytical SQL queries
 ├── src/                # Modular Python ETL, database, statistics, and export scripts
@@ -104,6 +105,8 @@ python src/03_build_database.py
 python src/04_statistics.py
 python src/05_export_for_powerbi.py
 ```
+
+Alternatively, open `notebooks/run_pipeline.ipynb` and click **Run All** to run the same four scripts in order.
 
 ---
 
