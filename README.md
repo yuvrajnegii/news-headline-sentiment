@@ -97,7 +97,7 @@ python -c "import nltk; nltk.download('vader_lexicon')"
 
 ### 2. Run the Pipeline
 
-Place `videos.csv` and `sentiments.csv` inside `data/raw/` (refer to [data/README.md](data/README.md) for schema requirements), then execute the pipeline scripts sequentially:
+Place `videos.csv` and `sentiments.csv` inside `data/raw/` (refer to [data/data_description.md](data/data_description.md) for schema requirements), then execute the pipeline scripts sequentially:
 
 ```bash
 python src/01_clean_data.py
@@ -112,7 +112,7 @@ Alternatively, open `notebooks/run_pipeline.ipynb` and click **Run All** to run 
 
 ## Data & Sampling Window
 
-Data was collected on **12 Nov 2026** via the YouTube Data API v3, capturing the **2,000 most recent uploads** per channel ($N = 8,000$). Because upload frequency varies by network, the 2,000-video window spans different timeframes (e.g., 27 days for MSNBC vs. 69 days for CBS News). To control for temporal confounding, all core hypotheses are also evaluated on a **time-matched window** of overlapping full days (**16 Oct – 11 Nov 2026**, $n = 5,361$ videos). Raw datasets are excluded from version control; see [data/README.md](data/README.md).
+Data was collected on **12 Nov 2026** via the YouTube Data API v3, capturing the **2,000 most recent uploads** per channel ($N = 8,000$). Because upload frequency varies by network, the 2,000-video window spans different timeframes (e.g., 27 days for MSNBC vs. 69 days for CBS News). To control for temporal confounding, all core hypotheses are also evaluated on a **time-matched window** of overlapping full days (**16 Oct – 11 Nov 2026**, $n = 5,361$ videos). Raw datasets are excluded from version control; see [data/data_description.md](data/data_description.md).
 
 ---
 
