@@ -72,6 +72,6 @@ The data was collected on **12 Nov 2026** with the YouTube Data API v3: each cha
 - VADER has not been validated against hand-labelled headlines (the most useful next step).
 
 ## Documentation
-[Findings](docs/findings.md) | [SQL documentation](docs/sql_documentation.md) | [Power BI guide](docs/powerbi_guide.md) | [Architecture](docs/architecture.md)
+[Findings](docs/findings.md) | [SQL documentation](docs/sql_documentation.md) | [Architecture](docs/architecture.md)
 
 Author: Yuvraj Negi
