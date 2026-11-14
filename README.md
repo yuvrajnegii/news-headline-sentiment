@@ -112,7 +112,7 @@ Alternatively, open `notebooks/run_pipeline.ipynb` and click **Run All** to run 
 
 ## Data & Sampling Window
 
-Data was collected on **12 Nov 2026** via the YouTube Data API v3, capturing the **2,000 most recent uploads** per channel ($N = 8,000$). Because upload frequency varies by network, the 2,000-video window spans different timeframes (e.g., 27 days for MSNBC vs. 69 days for CBS News). To control for temporal confounding, all core hypotheses are also evaluated on a **time-matched window** of overlapping full days (**16 Oct – 11 Nov 2026**, $n = 5,361$ videos). Raw datasets are excluded from version control; see [data/data_description.md](data/data_description.md).
+The data is included in `data/raw/`: a snapshot taken from the YouTube Data API v3 on 12 Nov 2026, covering the 2,000 most recent uploads per channel. It contains video IDs, titles, descriptions, publish dates, channel names, topic flags and VADER sentiment scores. YouTube content remains the property of its owners and its use is subject to the YouTube Terms of Service. This snapshot is shared for educational and portfolio purposes only. If you are a rights holder and would like something removed, please open an issue on this repository; see [data/data_description.md](data/data_description.md).
 
 ---
 
