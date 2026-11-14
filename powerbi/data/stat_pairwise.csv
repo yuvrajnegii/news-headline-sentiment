@@ -1,0 +1,13 @@
+dataset,comparison,mean_difference,prob_A_higher,cliffs_delta,p_holm,significant,effect_size
+Full snapshot,CBS News vs CNN,-0.0365,0.4777,-0.0446,0.023108,yes,negligible
+Full snapshot,CBS News vs Fox News,0.0629,0.5468,0.0937,1e-06,yes,negligible
+Full snapshot,CBS News vs MSNBC,-0.0508,0.4662,-0.0676,0.000413,yes,negligible
+Full snapshot,CNN vs Fox News,0.0994,0.5709,0.1418,0.0,yes,negligible
+Full snapshot,CNN vs MSNBC,-0.0142,0.4872,-0.0256,0.146196,no,negligible
+Full snapshot,Fox News vs MSNBC,-0.1136,0.4202,-0.1596,0.0,yes,small
+Time-matched window,CBS News vs CNN,-0.0173,0.4903,-0.0194,1.0,no,negligible
+Time-matched window,CBS News vs Fox News,0.0884,0.5639,0.1277,3e-06,yes,negligible
+Time-matched window,CBS News vs MSNBC,-0.0098,0.492,-0.016,1.0,no,negligible
+Time-matched window,CNN vs Fox News,0.1058,0.5736,0.1472,0.0,yes,small
+Time-matched window,CNN vs MSNBC,0.0076,0.5017,0.0034,1.0,no,negligible
+Time-matched window,Fox News vs MSNBC,-0.0982,0.4312,-0.1376,0.0,yes,negligible

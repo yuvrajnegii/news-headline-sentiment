@@ -1,0 +1,34 @@
+# ---- secrets (never commit) ----
+google-api-key.txt
+*.env
+.env
+
+# ---- data pulled from the YouTube API ----
+data/raw/
+data/processed/
+data/*.db
+*.db
+powerbi/data/
+*.pbix
+*.zip
+
+# ---- private notes ----
+docs/resume_and_interview.md
+
+# ---- generated files you chose not to publish ----
+reports/sql_results.md
+figures/*
+!figures/architecture.png
+!figures/04_topic_heatmap.png
+!figures/06_sentiment_trend.png
+!figures/08_mean_ci.png
+
+# ---- environments and caches ----
+old_env/
+venv/
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.vscode/
+.DS_Store
+Thumbs.db
