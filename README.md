@@ -15,7 +15,7 @@ An end-to-end data analysis of 8,000 YouTube video headlines from CBS News, CNN,
 Full write-up with evidence and caveats: [docs/findings.md](docs/findings.md)
 
 ## Dashboard
-Four-page Power BI dashboard (Overview, Channel Comparison, Detailed Analysis, Statistical Evidence). Build steps: [docs/powerbi_guide.md](docs/powerbi_guide.md)
+Four-page Power BI dashboard (Overview, Channel Comparison, Detailed Analysis, Statistical Evidence), built on a star-schema model with DAX measures.
 
 <!-- Add your screenshots to powerbi/screenshots/ and keep these lines -->
 ![Overview](powerbi/screenshots/01_overview.png)
@@ -29,7 +29,7 @@ Python (pandas, NumPy, SciPy, Matplotlib, Seaborn), NLTK VADER, SQLite, SQL, Jup
 |---|---|
 | Cleaning | Validated 8,000 rows: 0 missing values, 0 duplicate IDs, 47 repeated titles flagged. Recomputed VADER on every title and matched the stored scores exactly. |
 | EDA | 9-section notebook: score distributions, label shares, topic coverage, time-matched trends, extreme headlines, and a check on excluding neutral headlines. |
-| SQL | 4-table SQLite database with primary and foreign keys and 12 queries (joins, `CASE WHEN`, CTEs, subqueries, window functions), cross-checked against pandas.
+| SQL | 4-table SQLite database with primary and foreign keys and 12 queries (joins, `CASE WHEN`, CTEs, subqueries, window functions), cross-checked against pandas. |
 | Statistics | Kruskal-Wallis, pairwise Mann-Whitney with Holm correction, chi-square, effect sizes, and robustness checks (time-matched window, no repeated titles, day-level Friedman test). |
 | Dashboard | Star-schema model, DAX measures, four pages. |
 
@@ -38,13 +38,15 @@ Python (pandas, NumPy, SciPy, Matplotlib, Seaborn), NLTK VADER, SQLite, SQL, Jup
 src/            01_clean_data.py, 03_build_database.py, 04_statistics.py, 05_export_for_powerbi.py
 notebooks/      02_eda.ipynb
 sql/            schema.sql, queries.sql
-reports/        data_quality_report.md, sql_results.md, statistics_results.md
-figures/        EDA charts, architecture diagram
-docs/           findings.md, sql_documentation.md, powerbi_guide.md, architecture.md
-powerbi/        screenshots (and the report file, if you share it)
-legacy/         original collection code and notebook, kept for reference
+reports/        data_quality_report.md, statistics_results.md
+figures/        architecture diagram and key charts
+docs/           findings.md
+powerbi/        dashboard screenshots
+legacy/         original collection code, kept for reference (known issues: see below)
 data/           not committed; see data/README.md
 ```
+
+**Legacy code:** `legacy/` holds the original collection and scoring scripts, unchanged. They have known issues (for example the `sentiment` column stores an object instead of a label, and pagination can repeat pages for small channels). The analysis pipeline starts from the collected CSVs and works around them.
 
 ## How to run
 ```
@@ -72,6 +74,6 @@ The data was collected on **12 Nov 2026** with the YouTube Data API v3: each cha
 - VADER has not been validated against hand-labelled headlines (the most useful next step).
 
 ## Documentation
-[Findings](docs/findings.md) | [SQL documentation](docs/sql_documentation.md) | [Power BI guide](docs/powerbi_guide.md) | [Architecture](docs/architecture.md)
+[Findings and recommendations](docs/findings.md)
 
 Author: Yuvraj Negi
