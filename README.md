@@ -15,7 +15,7 @@ An end-to-end data analysis of 8,000 YouTube video headlines from CBS News, CNN,
 Full write-up with evidence and caveats: [docs/findings.md](docs/findings.md)
 
 ## Dashboard
-Four-page Power BI dashboard (Overview, Channel Comparison, Detailed Analysis, Statistical Evidence). Build steps: [docs/powerbi_guide.md](docs/powerbi_guide.md)
+Four-page Power BI dashboard (Overview, Channel Comparison, Detailed Analysis, Statistical Evidence).
 
 <!-- Add your screenshots to powerbi/screenshots/ and keep these lines -->
 ![Overview](powerbi/screenshots/01_overview.png)
