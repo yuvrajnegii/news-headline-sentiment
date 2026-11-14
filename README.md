@@ -2,11 +2,12 @@
 
 An end-to-end data analysis of 8,000 YouTube video headlines from CBS News, CNN, Fox News and MSNBC. It asks two questions: **do the channels cover political topics at different rates, and do their headlines differ in tone?** The project covers data validation, EDA, SQL, statistical testing, a Power BI dashboard, and written findings.
 
-> **Scope note:** this analyses video **titles (headlines)**, not comments. Sentiment is a VADER score of the wording. It does not measure what a channel believes or what viewers think.
+> **Scope note:** This analyses video **titles (headlines)**, not comments. Sentiment is a VADER score of the wording. It does not measure what a channel believes or what viewers think.
 
 ![Pipeline](figures/architecture.png)
 
-## Key findings
+## Key Findings
+
 - **Coverage is the clearest difference.** MSNBC titles mention the tracked political topics in 43% of headlines against 22% to 25% for the others (full snapshot). Over the same dates the gap is 17.3 percentage points (95% CI 14.7 to 20.0).
 - **Tone differences are small.** Fox headlines score lowest (mean -0.160; 44.6% negative vs 34.0% to 38.6%). This holds in every robustness check, but the effect is negligible to small (Cliff's delta 0.09 to 0.16).
 - **CBS, CNN and MSNBC are indistinguishable in tone** once compared over the same dates.
@@ -15,21 +16,33 @@ An end-to-end data analysis of 8,000 YouTube video headlines from CBS News, CNN,
 Full write-up with evidence and caveats: [docs/findings.md](docs/findings.md)
 
 ## Dashboard
-Four-page Power BI dashboard (Overview, Channel Comparison, Detailed Analysis, Statistical Evidence).
 
-<!-- Add your screenshots to powerbi/screenshots/ and keep these lines -->
+An interactive, four-page Power BI dashboard covering:
+- Overview
+- Channel Comparison
+- Detailed Analysis
+- Statistical Evidence
+
+**[View Interactive Power BI Dashboard](https://app.powerbi.com/links/gMINzfw585?ctid=1490b17d-5dc9-4cbf-aeba-a2e854f521b8&pbi_source=linkShare)**
+
+### Dashboard Screenshots
+
+<!-- Add your screenshots to powerbi/screenshots/ -->
+
 ![Overview](powerbi/screenshots/01_overview.png)
 
-![Channel comparison](powerbi/screenshots/02_channel_comparison.png)
+![Channel Comparison](powerbi/screenshots/02_channel_comparison.png)
 
 ![Detailed Analysis](powerbi/screenshots/03_detailed_analysis.png)
 
 ![Statistical Evidence](powerbi/screenshots/04_statistical_evidence.png)
 
-## Tech stack
+## Tech Stack
+
 Python (pandas, NumPy, SciPy, Matplotlib, Seaborn), NLTK VADER, SQLite, SQL, Jupyter, Power BI (DAX).
 
 ## Methods
+
 | Stage | What was done |
 |---|---|
 | Cleaning | Validated 8,000 rows: 0 missing values, 0 duplicate IDs, 47 repeated titles flagged. Recomputed VADER on every title and matched the stored scores exactly. |
@@ -38,8 +51,9 @@ Python (pandas, NumPy, SciPy, Matplotlib, Seaborn), NLTK VADER, SQLite, SQL, Jup
 | Statistics | Kruskal-Wallis, pairwise Mann-Whitney with Holm correction, chi-square, effect sizes, and robustness checks (time-matched window, no repeated titles, day-level Friedman test). |
 | Dashboard | Star-schema model, DAX measures, four pages. |
 
-## Project structure
-```
+## Project Structure
+
+```text
 src/            01_clean_data.py, 03_build_database.py, 04_statistics.py, 05_export_for_powerbi.py
 notebooks/      02_eda.ipynb
 sql/            schema.sql, queries.sql
@@ -51,8 +65,9 @@ legacy/         original collection code and notebook, kept for reference
 data/           not committed; see data/README.md
 ```
 
-## How to run
-```
+## How to Run
+
+```bash
 python -m venv venv
 venv\Scripts\activate            # Windows (use: source venv/bin/activate on macOS/Linux)
 pip install -r requirements.txt
@@ -67,9 +82,11 @@ python src/05_export_for_powerbi.py
 ```
 
 ## Data
+
 The data was collected on **12 Nov 2026** with the YouTube Data API v3: each channel's latest 2,000 uploads. Because the window is "latest 2,000", channels cover different periods (MSNBC 27 days, CBS 69 days), so comparisons are also run on a time-matched window of whole days (16 Oct to 11 Nov, 5,361 videos). The data files are not committed; see [data/README.md](data/data_README.md).
 
 ## Limitations
+
 - Headlines, not comments: results say nothing about audience opinion.
 - VADER scores word tone. Event words (riots, attack) score negative whatever the stance, and some positive scores are misreadings.
 - Short snapshot (27 to 69 days) that includes midterm election coverage, so tone and topic coverage may be event-driven.
@@ -77,4 +94,5 @@ The data was collected on **12 Nov 2026** with the YouTube Data API v3: each cha
 - VADER has not been validated against hand-labelled headlines (the most useful next step).
 
 ## Documentation
-[Findings](docs/findings.md) | [SQL documentation](docs/sql_documentation.md) | [Architecture](docs/architecture.md)
+
+[Findings](docs/findings.md) | [SQL Documentation](docs/sql_documentation.md) | [Architecture](docs/architecture.md) | [Power BI Guide](docs/powerbi_guide.md)
