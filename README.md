@@ -64,7 +64,7 @@ python src/05_export_for_powerbi.py
 ```
 
 ## Data
-The data was collected on **12 Nov 2026** with the YouTube Data API v3: each channel's latest 2,000 uploads. Because the window is "latest 2,000", channels cover different periods (MSNBC 27 days, CBS 69 days), so comparisons are also run on a time-matched window of whole days (16 Oct to 11 Nov, 5,361 videos). The data files are not committed; see [data/README.md](data/README.md).
+The data was collected on **12 Nov 2026** with the YouTube Data API v3: each channel's latest 2,000 uploads. Because the window is "latest 2,000", channels cover different periods (MSNBC 27 days, CBS 69 days), so comparisons are also run on a time-matched window of whole days (16 Oct to 11 Nov, 5,361 videos). The data files are not committed; see [data/README.md](data/data_README.md).
 
 ## Limitations
 - Headlines, not comments: results say nothing about audience opinion.
