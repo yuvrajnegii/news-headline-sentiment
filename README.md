@@ -95,4 +95,4 @@ The data was collected on **12 Nov 2026** with the YouTube Data API v3: each cha
 
 ## Documentation
 
-[Findings](docs/findings.md) | [SQL Documentation](docs/sql_documentation.md) | [Architecture](docs/architecture.md) | [Power BI Guide](docs/powerbi_guide.md)
+[Findings](docs/findings.md) | [SQL Documentation](docs/sql_documentation.md) | [Architecture](docs/architecture.md)
