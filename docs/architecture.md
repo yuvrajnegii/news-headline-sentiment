@@ -24,4 +24,3 @@ flowchart LR
 | Dashboard | `src/04_export_for_powerbi.py` | `news.db` | `powerbi/data/*.csv` for Power BI |
 | Findings | `docs/findings.md` | SQL, statistics and dashboard results | written findings and recommendations |
 
-Script numbers keep their original names (there is no `02`), so the run order is 01, 03, 04, 05.
