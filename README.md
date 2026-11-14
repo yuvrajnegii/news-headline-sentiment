@@ -20,6 +20,8 @@ Four-page Power BI dashboard (Overview, Channel Comparison, Detailed Analysis, S
 <!-- Add your screenshots to powerbi/screenshots/ and keep these lines -->
 ![Overview](powerbi/screenshots/01_overview.png)
 ![Channel comparison](powerbi/screenshots/02_channel_comparison.png)
+![Detailed Analysis](powerbi/screenshots/03_detailed_analysis)
+![Statistical Evidence](powerbi/screenshots/04_statistical_evidence)
 
 ## Tech stack
 Python (pandas, NumPy, SciPy, Matplotlib, Seaborn), NLTK VADER, SQLite, SQL, Jupyter, Power BI (DAX).
